@@ -2,11 +2,11 @@
 #define LOADSAVE_HPP
 
 
-void loadSamples(){
+void loadSamples(string data_path){
   
   ///////// Load File //////////
-  ifstream file_vertices("/.../Data/vertices.txt", ios::in);
-  ifstream file_force("/.../Data/force.txt", ios::in);
+  ifstream file_vertices(data_path + "vertices.txt", ios::in);
+  ifstream file_force(data_path + "force.txt", ios::in);
   
   string linestr_vertices, linestr_force;
   vector<string> line_split;

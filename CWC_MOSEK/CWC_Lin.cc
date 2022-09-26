@@ -65,11 +65,11 @@ void SplitString(const string& s, vector<string>& v, const string& c)
     v.push_back(s.substr(pos1));
 }
 
-void loadSamples(){
+void loadSamples(string data_path){
   
   ///////// Load File //////////
-  ifstream file_vertices("/.../Data/vertices.txt", ios::in);
-  ifstream file_force("/.../Data/force.txt", ios::in);
+  ifstream file_vertices(data_path + "/vertices.txt", ios::in);
+  ifstream file_force("/force.txt", ios::in);
   
   
   string linestr_vertices, linestr_force;
@@ -137,13 +137,13 @@ double arraySum(double const * array, int const len){
   
 }
 
-void saveResult(){
+void saveResult(string data_path){
   cout<<setiosflags(ios::fixed); 
   ofstream csvLog;
   if (isMaximize){
-    csvLog.open("/.../Data/max_tau_lin_" + to_string(num_edges) + ".txt");
+    csvLog.open(data_path + "max_tau_lin_" + to_string(num_edges) + ".txt");
   }else{
-    csvLog.open("/.../Data/min_tau_lin_" + to_string(num_edges) + ".txt");
+    csvLog.open(data_path + "min_tau_lin_" + to_string(num_edges) + ".txt");
   }
   
   int id;
@@ -166,10 +166,13 @@ void saveResult(){
 
 int main(int argc, char ** argv)
 {  
-  num_vertices = atoi(argv[1]);
-  num_samples = atoi(argv[2]);
-  num_edges = atoi(argv[3]);
-  objective_str = argv[4];
+  string data_path(argv[1]);
+  if ('/' != data_path.back())   data_path.append("/");
+  
+  num_vertices = atoi(argv[2]);
+  num_samples = atoi(argv[3]);
+  num_edges = atoi(argv[4]);
+  objective_str = argv[5];
   
   double mu = 1;
   double muc = mu * cos(pi/num_edges);
@@ -197,7 +200,7 @@ int main(int argc, char ** argv)
   OptVal = new double[num_samples];
   Feasibility = new bool[num_samples];
   computeTime = new double[num_samples];
-  loadSamples();
+  loadSamples(data_path);
   
   //////////////// Construct Model ////////////////////////
   Model::t M = new Model("cwc_lin"); auto _M = finally([&]() { M->dispose(); });
@@ -336,7 +339,7 @@ int main(int argc, char ** argv)
   double average_time = (sum_of_time - computeTime[0]) / (num_samples-1);
   disp(average_time);
   
-  saveResult();
+  saveResult(data_path);
   
   
   // M->writeTask("dump.opf");

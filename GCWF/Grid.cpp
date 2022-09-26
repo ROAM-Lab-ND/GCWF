@@ -21,12 +21,15 @@ vector<YawMomentResult> result;
 
 
 int main(int argc, char const *argv[]) {
-  num_vertices = atoi(argv[1]); 
-  num_samples = atoi(argv[2]);
-  num_grid = atoi(argv[3]);
+  string data_path(argv[1]);
+  if ('/' != data_path.back())   data_path.append("/");
+  
+  num_vertices = atoi(argv[2]); 
+  num_samples = atoi(argv[3]);
+  num_grid = atoi(argv[4]);
   d_alpha = pi / (double)num_grid;
   computeTime = new double[num_samples];
-  loadSamples();
+  loadSamples(data_path);
   
   Inclusion inclusion_status = INSIDE;
   int inclusion_index = 0;
@@ -133,7 +136,7 @@ int main(int argc, char const *argv[]) {
   disp(YawSolve_count);
   #endif //DEBUG
   
-  saveResult("/.../Data/Tau_Grid_" + to_string(num_grid) + ".txt");
+  saveResult(data_path + "Tau_Grid_" + to_string(num_grid) + ".txt");
   
   
   return 0;

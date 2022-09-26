@@ -16,10 +16,13 @@ vector<YawMomentResult> result;
 #include "loadsave.hpp"
 
 int main(int argc, char const *argv[]) {
-  num_vertices = atoi(argv[1]); 
-  num_samples = atoi(argv[2]);
+  string data_path(argv[1]);
+  if ('/' != data_path.back())   data_path.append("/");
+  
+  num_vertices = atoi(argv[2]); 
+  num_samples = atoi(argv[3]);
   computeTime = new double[num_samples];
-  loadSamples();
+  loadSamples(data_path);
   
   result.reserve(num_samples);
   bool isInside_prev;
@@ -151,7 +154,7 @@ int main(int argc, char const *argv[]) {
   disp(YawSolve_count);
   #endif //DEBUG
   
-  saveResult("/.../Data/Tau_LCL.txt");
+  saveResult(data_path + "Tau_LCL.txt");
   
   
   

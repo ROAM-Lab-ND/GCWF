@@ -3,7 +3,7 @@ if ~exist('N','var')
     N = 6;
 end
 N_samples = 10000
-indx = 2;
+indx = 1;
 RandomTestSampleGenerator;
 if isDone ~= 1
     disp("Generation Failure");
