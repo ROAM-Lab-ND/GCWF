@@ -66,11 +66,13 @@ void SplitString(const string& s, vector<string>& v, const string& c)
 }
 
 void loadSamples(string data_path){
+  #ifdef DEBUG
+  cout << "Loading samples" << endl;
+  #endif // DEBUG
   
   ///////// Load File //////////
-  ifstream file_vertices(data_path + "/vertices.txt", ios::in);
-  ifstream file_force("/force.txt", ios::in);
-  
+  ifstream file_vertices(data_path + "vertices.txt", ios::in);
+  ifstream file_force(data_path + "force.txt", ios::in);
   
   string linestr_vertices, linestr_force;
   vector<string> line_split;
@@ -173,6 +175,13 @@ int main(int argc, char ** argv)
   num_samples = atoi(argv[3]);
   num_edges = atoi(argv[4]);
   objective_str = argv[5];
+  
+  #ifdef DEBUG
+  disp(data_path);
+  disp(num_vertices);
+  disp(num_samples);
+  disp(num_edges);
+  #endif //DEBUG
   
   double mu = 1;
   double muc = mu * cos(pi/num_edges);

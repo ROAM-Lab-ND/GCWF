@@ -1,16 +1,25 @@
 clc
-clearvars  -except N N_samples indx complexity N_list
-system("rm -rf Data/*");
+clearvars  -except N_vertices N_samples indx complexity N_list datapath datapath_CPP
 close all force
 
 isDone = 0;
 
 mu = 1;
 fz = 1;
-if ~exist('N','var')
-    N = 10;
+
+if ~exist('datapath','var')
+    datapath = "Data/";
 end
-p_zmp = [0;0];
+system("rm -rf "+datapath+"*");
+
+if ~exist('datapath_CPP','var')
+    datapath_CPP = "../Matlab/"+datapath;
+end
+
+if ~exist('N_vertices','var')
+    N_vertices = 10;
+end
+
 if ~exist('N_samples','var')
     N_samples = 10000;
 end
@@ -26,8 +35,8 @@ end
 
 
 
-file_vertices = fopen('Data/vertices.txt','w');
-file_force = fopen('Data/force.txt','w');
+file_vertices = fopen(datapath + "vertices.txt",'w');
+file_force = fopen(datapath + "force.txt",'w');
 
 close all force
 wb = waitbar(0,"Generating");
@@ -37,16 +46,13 @@ Regen = false;
 for i = 1:N_samples
     switch indx
         case 1
-            p_hull = RandomPolygon(N);
+            p_hull = RandomPolygon(N_vertices);
         case 2
-            p_hull = N_Gon(N);
+            p_hull = N_Gon(N_vertices);
     end
-    
 %     disp(p_hull');
  
     f = RandomForce();
-
-
 %     disp(f');
 
     SavePolygon(file_vertices, p_hull, i);
