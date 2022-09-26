@@ -1,16 +1,21 @@
+# This makefile is not in use
+
 
 CC=clang++
-	
-LCL: LongestCenteredLine.cpp
-	$(CC) -Wl,-headerpad_max_install_names -std=c++11 -stdlib=libc++ -O3 -o LCL LongestCenteredLine.cpp
-	
-EAV: EnumerateAllvertices.cpp
-	$(CC) -Wl,-headerpad_max_install_names -std=c++11 -stdlib=libc++ -O3 -o EAV EnumerateAllvertices.cpp
 
-Grid: Grid.cpp
-	$(CC) -Wl,-headerpad_max_install_names -std=c++11 -stdlib=libc++ -O3 -o Grid Grid.cpp
+BUILDPATH=../build/
+HEADERS=helper.hpp loadsave.hpp YawMoment_Geo.hpp
+	
+LCL: LongestCenteredLine.cpp $(HEADERS)
+	$(CC) -Wl,-headerpad_max_install_names -std=c++11 -stdlib=libc++ -O3 -o $(BUILDPATH)LCL LongestCenteredLine.cpp
+	
+EAV: EnumerateAllvertices.cpp $(HEADERS)
+	$(CC) -Wl,-headerpad_max_install_names -std=c++11 -stdlib=libc++ -O3 -o $(BUILDPATH)EAV EnumerateAllvertices.cpp
 
-all: clean test LCL EAV Grid
+Grid: Grid.cpp $(HEADERS)
+	$(CC) -Wl,-headerpad_max_install_names -std=c++11 -stdlib=libc++ -O3 -o $(BUILDPATH)Grid Grid.cpp
+
+all: LCL EAV Grid
 	
 clean:
-	rm -f test LCL EAV Grid
+	rm -f $(BUILDPATH)LCL $(BUILDPATH)EAV $(BUILDPATH)Grid

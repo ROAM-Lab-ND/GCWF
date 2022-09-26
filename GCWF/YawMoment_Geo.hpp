@@ -82,6 +82,7 @@ YawMomentResult YawMoment_Geo(Point p_a, Point p_b, force2D f_h, double f_z, dou
   YawMomentResult result(true, 0.0, 0.0);
   Vec2D f_a(0,0);
   Vec2D f_b(0,0);
+  double f_h_norm;
   
   /* Old version for quadratic constaint parameter with vector norm */
   // // Spacial cases for p_a or p_b is origin
@@ -127,7 +128,7 @@ YawMomentResult YawMoment_Geo(Point p_a, Point p_b, force2D f_h, double f_z, dou
   }
   
   // Compute some frequently used vars
-  double f_h_norm = norm(f_h);
+  f_h_norm = norm(f_h);
   Vec2D p_a_T_hat = crossVec2D(p_a) * (1 / norm(p_a)); // \hat [\p_a]^\top
   
   // Spacial cases about f_h
