@@ -8,5 +8,12 @@ _A Geometric Sufficient Condition for Contact Wrench Feasibility_
 `Shenggao Li` `Hua Chen` `Wei Zhang` `Patrick M. Wensing`
 
 
-TODO: Organize .makefile and path in code.
-TODO: Tutorial on develop this project
+TODO: Detailed explanation and introducation.
+
+## Run it
+Compile:
+```
+mkdir build
+make all
+```
+Then run `SampleGenAndCompute.m` in Matlab.
