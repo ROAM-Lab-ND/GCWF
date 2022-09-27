@@ -10,7 +10,7 @@ while notFeasible
     count = fprintf("Sampling Polygon");
     
     angle_shift = rand(1)*pi;
-    pos_shift = 0.2*rand(2,1);
+    pos_shift = 2*rand(2,1) - 1;
     p_hull = [sin(angle_step+angle_shift);cos(angle_step+angle_shift)];
     p_hull = p_hull(:,1:end-1);
     [K,~] = convhull( p_hull(1,:), p_hull(2,:) );
@@ -19,7 +19,7 @@ while notFeasible
     assert(size(p_hull,2) == N+1);
     notFeasible =  ~inpolygon(0,0,p_hull(1,:),p_hull(2,:));
     if notFeasible
-        fprintf(" -- Not Feasible\n");
+        fprintf(" -- Not Feasible, reGen\n");
     else
         fprintf(repmat('\b',1,count));
     end

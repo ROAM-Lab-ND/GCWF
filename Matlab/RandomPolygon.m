@@ -23,7 +23,7 @@ while notFeasible
     assert(size(p_hull,2) == N+1);
     notFeasible =  ~inpolygon(0,0,p_hull(1,:),p_hull(2,:));
     if notFeasible
-        fprintf(" -- Not Feasible\n");
+        fprintf(" -- Not Feasible, reGen\n");
     else
         fprintf(repmat('\b',1,count));
     end

@@ -58,7 +58,7 @@ for i = 1:N_samples
     SavePolygon(file_vertices, p_hull, i);
     SaveForce(file_force,f,i);
 
-    waitbar(i/N_samples,wb,"Generating");
+    waitbar(i/N_samples,wb,"Generating: "+num2str(i)+" / "+num2str(N_samples));
 
 end
 fprintf('\n');

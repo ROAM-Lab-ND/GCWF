@@ -1,4 +1,5 @@
 .DS_Store
 build/
 Data/
-mosekpath.mk
+config.mk
+*.asv
