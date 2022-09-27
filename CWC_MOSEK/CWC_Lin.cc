@@ -45,7 +45,6 @@ int num_edges;
 double* OptVal;
 bool* Feasibility;
 double* computeTime;
-char * objective_str;
 bool isMaximize;
 
 
@@ -174,7 +173,7 @@ int main(int argc, char ** argv)
   num_vertices = atoi(argv[2]);
   num_samples = atoi(argv[3]);
   num_edges = atoi(argv[4]);
-  objective_str = argv[5];
+  string objective_str = argv[5];
   
   #ifdef DEBUG
   disp(data_path);
@@ -195,10 +194,10 @@ int main(int argc, char ** argv)
   }
   auto LCMat =  Matrix::dense(num_edges,3,new_array_ptr(Mat));
   
-  if (strcmp(objective_str, "max") == 0){
+  if ( objective_str.compare("max") == 0 ){
     cout << "Maxing" << endl;
     isMaximize = true;
-  }else if (strcmp(objective_str, "min") == 0){
+  }else if ( objective_str.compare("min") == 0 ){
     cout << "Mining" << endl;
     isMaximize = false;
   }else{

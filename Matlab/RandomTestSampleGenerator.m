@@ -10,6 +10,9 @@ fz = 1;
 if ~exist('datapath','var')
     datapath = "Data/";
 end
+if ~exist(datapath,'dir')
+    mkdir(datapath);
+end
 system("rm -rf "+datapath+"*");
 
 if ~exist('datapath_CPP','var')

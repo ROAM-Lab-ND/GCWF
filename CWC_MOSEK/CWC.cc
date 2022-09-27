@@ -41,7 +41,6 @@ int num_samples;
 double* OptVal;
 bool* Feasibility;
 double* computeTime;
-char * objective_str;
 bool isMaximize;
 
 
@@ -170,12 +169,12 @@ int main(int argc, char ** argv)
   
   num_vertices = atoi(argv[2]);
   num_samples = atoi(argv[3]);
-  objective_str = argv[4];
+  string objective_str = argv[4];
   
-  if (strcmp(objective_str, "max") == 0){
+  if (objective_str.compare("max") == 0 ){
     cout << "Maxing" << endl;
     isMaximize = true;
-  }else if (strcmp(objective_str, "min") == 0){
+  }else if (objective_str.compare("min") == 0 ){
     cout << "Mining" << endl;
     isMaximize = false;
   }else{

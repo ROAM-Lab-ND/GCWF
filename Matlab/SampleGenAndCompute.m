@@ -5,9 +5,9 @@ if ~exist('N_vertices','var')
     N_vertices = 6;
 end
 datapath = "Data/";
-N_samples = 1000
 % indx = 1;
-RandomTestSampleGenerator;
+N_samples = 1000;
+RandomTestSampleGenerator
 if isDone ~= 1
     disp("Generation Failure");
     return;
