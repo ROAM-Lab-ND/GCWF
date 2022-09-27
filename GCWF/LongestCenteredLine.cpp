@@ -78,7 +78,10 @@ int main(int argc, char const *argv[]) {
           }
           isInside_prev = isInside;
         }
-        assert( (inner_vertices.size() + inter_vertices.size()) >= 2);
+        
+        if( !((inner_vertices.size() + inter_vertices.size()) >= 2) ){
+          throw runtime_error("Not enough vertices found! Bad Bug!");
+        }
         
         // Find longest
         double max_inner(0.0), max_inter(0.0);
