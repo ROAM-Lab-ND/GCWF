@@ -63,7 +63,9 @@ void loadSamples(string data_path){
     #endif //DEBUG
     
     
-    assert(id_force == id_vertices);
+    if( !(id_force == id_vertices) ){
+      throw runtime_error("IDs for force data and vertices data are different! Check your data.");
+    }
     id_list[i_sample] = id_force;
   }
   
