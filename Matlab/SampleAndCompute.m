@@ -6,7 +6,7 @@ if ~exist('N_vertices','var')
 end
 datapath = "Data/";
 % indx = 1;
-N_samples = 1000;
+N_samples = 100;
 RandomTestSampleGenerator
 if isDone ~= 1
     disp("Generation Failure");
@@ -42,6 +42,7 @@ BestLine_CPP(datapath,N_vertices,N_samples,N_grid);
 waitbar(1,wb,"Done. Ploting Result.");
 
 %% 
+NewResult = true;
 CompareResult;
 
 close(wb);

@@ -1,28 +1,32 @@
 
-sampleSet = "ExampleData_6x10000/";
-sampleSet = "Data/";
+if ~exist('NewResult','var') || ~NewResult
+    datapath = uigetdir();
+    datapath = datapath+"/";
+else
+    NewResult = false;
+end
 
 disp("CWC");
-CWC = loadTrueData(sampleSet+'max_tau.txt', sampleSet+'min_tau.txt');
+CWC = loadTrueData(datapath+"max_tau.txt", datapath+"min_tau.txt");
 
 disp("CWC Lin 4");
-CWCLin_4 = loadTestData_LCWC(sampleSet+'max_tau_lin_4.txt', sampleSet+'min_tau_lin_4.txt', CWC);
+CWCLin_4 = loadTestData_LCWC(datapath+"max_tau_lin_4.txt", datapath+"min_tau_lin_4.txt", CWC);
 disp("CWC Lin 8");
-CWCLin_8 = loadTestData_LCWC(sampleSet+'max_tau_lin_8.txt', sampleSet+'min_tau_lin_8.txt', CWC);
+CWCLin_8 = loadTestData_LCWC(datapath+"max_tau_lin_8.txt", datapath+"min_tau_lin_8.txt", CWC);
 
 disp("LCL (approach 1)"); % Longest Centered Line
-LCL = loadTestData_Propose(sampleSet+'Tau_LCL.txt', CWC);
+LCL = loadTestData_Propose(datapath+"Tau_LCL.txt", CWC);
 
 disp("EAV (approach 2)"); % Enumerate All Vertices
-EAV = loadTestData_Propose(sampleSet+'Tau_EAV.txt', CWC);
+EAV = loadTestData_Propose(datapath+"Tau_EAV.txt", CWC);
 
-load(sampleSet+"num_GD.mat");
+load(datapath+"num_GD.mat");
 
 disp("Grid Search "+num2str(N_grid_Opt));
-GD5K = loadTestData_Propose(sampleSet+'Tau_Grid_'+num2str(N_grid_Opt)+'.txt', CWC);
+GD5K = loadTestData_Propose(datapath+"Tau_Grid_"+num2str(N_grid_Opt)+".txt", CWC);
 
 disp("Grid Search "+num2str(N_grid));
-GD = loadTestData_Propose(sampleSet+'Tau_Grid_'+num2str(N_grid)+'.txt', CWC);
+GD = loadTestData_Propose(datapath+"Tau_Grid_"+num2str(N_grid)+".txt", CWC);
 
 
 Method = ["2nd CWC","1st CWC-4","1st CWC-8","Approach 1","Approach 2","GD-"+num2str(N_grid),"Optimal Line"]';
@@ -43,13 +47,13 @@ legend_strs = plotHist(EAV.err_whole,'o-',legend_strs,"Approach 2 - Vertices Enu
 legend_strs = plotHist(GD.err_whole,'x-',legend_strs,"Grid Search with "+num2str(N_grid)+" Grids");
 legend_strs = plotHist(CWCLin_4.err_whole,'s-',legend_strs,"$1^{\rm st}$-CWC with 4 edges");
 legend_strs = plotHist(CWCLin_8.err_whole,'d-',legend_strs,"$1^{\rm st}$-CWC with 8 edges");
-leg = legend(legend_strs,'Location','southwest','Interpreter','latex');
+legend(legend_strs,'Location','best','Interpreter','latex');
 xlabel("Moment Error $e$ (\%)");
 ylabel("Cumulative Possibility");
 
 figure_FontSize=14;
 
-f.InnerPosition = [440   378   560   270];
+f.InnerPosition = [440   378   560   340];
 xlim([0 110]);
 ylim([0 1]);
 
@@ -63,7 +67,6 @@ set(get(ax,'YLabel'),'FontSize',figure_FontSize,'Interpreter','latex');
 set(findobj('FontSize',figure_FontSize),'FontSize',figure_FontSize);
 set(f, 'renderer','painters');
 
-leg.Position(1) = leg.Position(1) + 0.08;
 
 
 %% 
