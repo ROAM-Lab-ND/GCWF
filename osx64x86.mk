@@ -29,8 +29,8 @@ HEADERS=$(shell find ./GCWF -type f -name *.hpp)
 $(BUILDPATH)LCL: GCWF/LongestCenteredLine.cpp $(HEADERS)
 	$(CC) -std=c++11 -stdlib=libc++ -O3 -o $(BUILDPATH)LCL GCWF/LongestCenteredLine.cpp
 
-$(BUILDPATH)EAV: GCWF/EnumerateAllvertices.cpp $(HEADERS)
-	$(CC) -std=c++11 -stdlib=libc++ -O3 -o $(BUILDPATH)EAV GCWF/EnumerateAllvertices.cpp
+$(BUILDPATH)EAV: GCWF/EnumerateAllVertices.cpp $(HEADERS)
+	$(CC) -std=c++11 -stdlib=libc++ -O3 -o $(BUILDPATH)EAV GCWF/EnumerateAllVertices.cpp
 
 $(BUILDPATH)Grid: GCWF/Grid.cpp $(HEADERS)
 	$(CC) -std=c++11 -stdlib=libc++ -O3 -o $(BUILDPATH)Grid GCWF/Grid.cpp
