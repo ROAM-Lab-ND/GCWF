@@ -50,7 +50,7 @@ Run the setup script and follow the instruction to configure the MOSEK library a
 
 
 ### Run Example 
-Run the script `Matlab/SampleAndCompute.m` in MATLAB to generate new data, run the solver, and plot the result. You should have results similar to the following:
+Run the script [`Matlab/SampleAndCompute.m`](Matlab/SampleAndCompute.m) in MATLAB to generate new data, run the solver, and plot the result. You should have results similar to the following:
 ![ErrorHistogram](images/2022/09/errorhistogram.png)
 
 Method                              | Error  | Standard Deviation | Computation Time ($\mu s$)
@@ -66,7 +66,7 @@ Optimal Supporting Line             | 6.50%  | 4.88%              | 2954.9
 ### Troubleshooting
 - MOSEK is not installed: _TODO: set flag in MATLAB script to solve CWC via native MATLAB function ..._
 - For Mac, run the python script in [installation guide][004a721d] is important.
-- If both MOSEK and our project cannot be installed, you can directly run MATLAB script `Matlab/CompareResult.m` and choose an example data set to see the result.
+- If both MOSEK and our project cannot be installed, you can directly run MATLAB script [`Matlab/CompareResult.m`](Matlab/CompareResult.m) and choose an example data set to see the result.
 
   [004a721d]: https://docs.mosek.com/9.3/install/index.html "INSTALLATION-GUIDE"
 
