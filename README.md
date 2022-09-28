@@ -4,7 +4,7 @@
 <!-- Verifying Contact Wrench Feasibility via Geometrical Approach. -->
 
 Example code of \
-_A Geometric Sufficient Condition for Contact Wrench Feasibility_\
+_**A Geometric Sufficient Condition for Contact Wrench Feasibility**_\
 Shenggao Li, Hua Chen, Wei Zhang, Patrick M. Wensing
 
 ## Background
@@ -31,21 +31,53 @@ In our paper, we introduced a geometry-based framework to approximate the exact 
   [24aab043]: https://docs.mosek.com/9.3/cxxfusion/install-interface.html# "MOSEK-INSTALL"
   [833fb562]: https://docs.mosek.com/9.3/licensing/index.html "MOSEK-LICENSE"
 
-## Install
+## Getting Started
+### Install
 Download this project
 ```
 git clone https://github.com/ROAM-Lab-ND/GCWF.git
 cd GCWF
 ```
-Run the setup script and follow the instruction to configure the MOSEK library and compile this project. `<MSKHOME>` contains your MOSEK library like `<MSKHOME>/mosek/9.3/tools/...`
+Run the setup script and follow the instruction to configure the MOSEK library and compile this project. 
 ```
 ./setup.sh <MSKHOME>
 ```
+> `<MSKHOME>` contains your MOSEK library like `<MSKHOME>/mosek/9.3/tools/...`
 ##### Available Makefile commands
 1. `make clean` to remove all compiling and executable files of this project (but keeps MOSEK library).
 2. `make clean_MOSEK` to clean the MOSEK library.
 3. `make all` to compile all (both MOSEK library and this project).
 
 
-## Run Example 
-Run the script `SampleAndCompute.m` in MATLAB.
+### Run Example 
+Run the script `Matlab/SampleAndCompute.m` in MATLAB to generate new data, run the solver, and plot the result. You should have results similar to the following:
+![ErrorHistogram](images/2022/09/errorhistogram.png)
+
+Method                              | Error  | Standard Deviation | Computation Time ($\mu s$)
+------------------------------------|--------|--------------------|---------------------------
+$2^{\rm nd}$-CWC                    | 0%     | 0%                 | 556.97
+$1^{\rm st}$-CWC (4 edges)          | 19.35% | 15.02%             | 682.29
+$1^{\rm st}$-CWC (8 edges)          | 8.37%  | 9.94%              | 961.77
+Appraoch 1 (Longest Centered Line)  | 18.80% | 16.63%             | 3.56
+Appraoch 2 (Enumerate All Vertices) | 7.13%  | 5.54%              | 3.64
+Grid Search (81 grids)              | 7.13%  | 5.56%              | 50.49
+Optimal Supporting Line             | 6.50%  | 4.88%              | 2954.9
+
+### Troubleshooting
+- MOSEK is not installed: _TODO: set flag in MATLAB script to solve CWC via native MATLAB function ..._
+- For Mac, run the python script in [installation guide][004a721d] is important.
+- If both MOSEK and our project cannot be installed, you can directly run MATLAB script `Matlab/CompareResult.m` and choose an example data set to see the result.
+
+  [004a721d]: https://docs.mosek.com/10.0/install/installation.html "INSTALLATION-GUIDE"
+
+<!-- ## Usage
+Direct call C++ program via command line.\
+Change directory to build `cd build`\
+`./build/CWC <DataPath> N_veritices N_samples ` -->
+
+
+## Citation
+If you use the algorithm in an academic context, please cite the following publication:
+```
+Paper in reviewing ......
+```
