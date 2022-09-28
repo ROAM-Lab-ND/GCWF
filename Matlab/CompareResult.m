@@ -1,10 +1,16 @@
 
 if ~exist('NewResult','var') || ~NewResult
+    % If directly run this script, let the user choose the data set
     datapath = uigetdir();
     datapath = datapath+"/";
 else
+    % Call this script from SampleAndCompute, clean flag for next time.
     NewResult = false;
 end
+
+% Load results
+
+load(datapath+"num_GD.mat");
 
 disp("CWC");
 CWC = loadTrueData(datapath+"max_tau.txt", datapath+"min_tau.txt");
@@ -20,12 +26,10 @@ LCL = loadTestData_Propose(datapath+"Tau_LCL.txt", CWC);
 disp("EAV (approach 2)"); % Enumerate All Vertices
 EAV = loadTestData_Propose(datapath+"Tau_EAV.txt", CWC);
 
-load(datapath+"num_GD.mat");
-
-disp("Grid Search "+num2str(N_grid_Opt));
+disp("Grid Search "+num2str(N_grid_Opt)); % Optimal line found by brute force searching
 GD5K = loadTestData_Propose(datapath+"Tau_Grid_"+num2str(N_grid_Opt)+".txt", CWC);
 
-disp("Grid Search "+num2str(N_grid));
+disp("Grid Search "+num2str(N_grid)); % Grid search
 GD = loadTestData_Propose(datapath+"Tau_Grid_"+num2str(N_grid)+".txt", CWC);
 
 
@@ -34,7 +38,10 @@ ErrorRate = [0,CWCLin_4.err_mean,CWCLin_8.err_mean,LCL.err_mean,EAV.err_mean,GD.
 ComputationTime = [CWC.maxTime,CWCLin_4.maxTime,CWCLin_8.maxTime,LCL.time,EAV.time,GD.time,GD5K.time]';
 StandardDeviation = [0,std(CWCLin_4.err_whole_NoNan),std(CWCLin_8.err_whole_NoNan),std(LCL.err_whole),...
     std(EAV.err_whole),std(GD.err_whole),std(GD5K.err_whole)]';
-table(Method,ErrorRate,StandardDeviation,ComputationTime)
+
+T1 = table(Method,ErrorRate,StandardDeviation,ComputationTime);
+
+disp(T1);
 
 %% 
 close all

@@ -11,13 +11,13 @@ fusion:
 
 $(BUILDPATH)CWC: fusion CWC_MOSEK/CWC.cc
 	$(CC) -Wl,-headerpad_max_install_names -std=c++11 -stdlib=libc++ -g $(IPATHS) $(LPATHS) -o $(BUILDPATH)CWC CWC_MOSEK/CWC.cc -lfusion64 -lmosek64
-	install_name_tool -change libfusion64.9.3.dylib $(MSKPATH)/bin/libfusion64.9.3.dylib $(BUILDPATH)CWC || rm -f $(BUILDPATH)CWC
-	install_name_tool -change libmosek64.9.3.dylib $(MSKPATH)/bin/libmosek64.9.3.dylib $(BUILDPATH)CWC || rm -f $(BUILDPATH)CWC
+	install_name_tool -change libfusion64.$(MSKVERSION).dylib $(MSKPATH)/bin/libfusion64.$(MSKVERSION).dylib $(BUILDPATH)CWC || rm -f $(BUILDPATH)CWC
+	install_name_tool -change libmosek64.$(MSKVERSION).dylib $(MSKPATH)/bin/libmosek64.$(MSKVERSION).dylib $(BUILDPATH)CWC || rm -f $(BUILDPATH)CWC
 
 $(BUILDPATH)CWC_Lin: fusion CWC_MOSEK/CWC_Lin.cc
 	$(CC) -Wl,-headerpad_max_install_names -std=c++11 -stdlib=libc++ -g $(IPATHS) $(LPATHS) -o $(BUILDPATH)CWC_Lin CWC_MOSEK/CWC_Lin.cc -lfusion64 -lmosek64
-	install_name_tool -change libfusion64.9.3.dylib $(MSKPATH)/bin/libfusion64.9.3.dylib $(BUILDPATH)CWC_Lin || rm -f $(BUILDPATH)CWC_Lin
-	install_name_tool -change libmosek64.9.3.dylib $(MSKPATH)/bin/libmosek64.9.3.dylib $(BUILDPATH)CWC_Lin || rm -f $(BUILDPATH)CWC_Lin
+	install_name_tool -change libfusion64.$(MSKVERSION).dylib $(MSKPATH)/bin/libfusion64.$(MSKVERSION).dylib $(BUILDPATH)CWC_Lin || rm -f $(BUILDPATH)CWC_Lin
+	install_name_tool -change libmosek64.$(MSKVERSION).dylib $(MSKPATH)/bin/libmosek64.$(MSKVERSION).dylib $(BUILDPATH)CWC_Lin || rm -f $(BUILDPATH)CWC_Lin
 
 .PHONY : CWC_MOSEK
 CWC_MOSEK: $(BUILDPATH)CWC $(BUILDPATH)CWC_Lin
