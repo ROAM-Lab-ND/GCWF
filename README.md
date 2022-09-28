@@ -68,7 +68,7 @@ Optimal Supporting Line             | 6.50%  | 4.88%              | 2954.9
 - For Mac, run the python script in [installation guide][004a721d] is important.
 - If both MOSEK and our project cannot be installed, you can directly run MATLAB script `Matlab/CompareResult.m` and choose an example data set to see the result.
 
-  [004a721d]: https://docs.mosek.com/10.0/install/installation.html "INSTALLATION-GUIDE"
+  [004a721d]: https://docs.mosek.com/9.3/install/index.html "INSTALLATION-GUIDE"
 
 <!-- ## Usage
 Direct call C++ program via command line.\
