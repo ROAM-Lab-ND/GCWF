@@ -1,6 +1,7 @@
 function [] = SavePolygon(file, p_hull, index)
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+%SavePolygon save the polygon into data file
+%   SavePolygon(file, p_hull, index) saves the p_hull into file with index
+%   number.
 arguments
     file
     p_hull (2,:) {mustBeNumeric}
