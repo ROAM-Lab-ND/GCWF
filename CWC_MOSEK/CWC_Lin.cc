@@ -19,6 +19,8 @@ using namespace chrono;
 
 // #define DEBUG
 
+// Defien marcos for convenience
+
 #define pi 3.14159265358979323846
 
 #define disp(x) cout<<#x<<"="<<endl<<x<<endl
@@ -34,6 +36,8 @@ using namespace chrono;
                       for(int j=0;j<n;++j){outport<<x[j]<<",";}       \
                     }
 
+// Global data (and their pointers)
+
 int num_vertices;
 
 double*** vertices_table;
@@ -47,7 +51,7 @@ bool* Feasibility;
 double* computeTime;
 bool isMaximize;
 
-
+/* Split csv data */
 void SplitString(const string& s, vector<string>& v, const string& c)
 {
   std::string::size_type pos1, pos2;
@@ -169,6 +173,7 @@ void saveResult(string data_path){
 
 int main(int argc, char ** argv)
 {  
+// input args: [datapath] [num_vertices] [num_samples] [num_edges] [max/min]
   string data_path(argv[1]);
   if ('/' != data_path.back())   data_path.append("/");
   
@@ -184,7 +189,8 @@ int main(int argc, char ** argv)
   disp(num_edges);
   #endif //DEBUG
   
-  double mu = 1;
+  // Compute the linear cone constraints matrix
+  double mu = 1; // Supposing mu = 1
   double muc = mu * cos(pi/num_edges);
   double alpha;
   vector<double> Mat;
@@ -216,6 +222,7 @@ int main(int argc, char ** argv)
   Model::t M = new Model("cwc_lin"); auto _M = finally([&]() { M->dispose(); });
   
   // x = [x1 x2 x3] = [fz fx fy]
+  // Reorganizing variable order to match variables in exact CWC
   
   vector<Variable::t> x_list;
   
@@ -235,16 +242,20 @@ int main(int argc, char ** argv)
   Parameter::t x_zmp = M->parameter("x_zmp", 3);
   
   // Create the constraint
+  // Linear force constraint in (4c) of paper 
   M->constraint("linearforce", 
     Expr::sub(Expr::add( new_array_ptr(x_list) ), x_zmp), 
     Domain::equalsTo(0.0));
-  
+
+  // Zero pitch and roll moment constraint in (4b) in paper
+  // [SP_x; SP_x_3] forms the entire cross product matrix for all vertices
   Parameter::t SP_x = M->parameter("sp_x", new_array_ptr<int,1>({2,3*num_vertices}));
   M->constraint("moment", Expr::mul(SP_x, x_stack), Domain::equalsTo(0.0));
   
   Parameter::t SP_x_3 = M->parameter("sp_x_3", new_array_ptr<int,1>({1,3*num_vertices}));
   
   // Set the objective function 
+  // Express the n^z as a linear function of desicion varibales [x] 
   if (isMaximize){
     M->objective("obj", ObjectiveSense::Maximize, Expr::mul(SP_x_3, x_stack));
   }else{
@@ -257,9 +268,9 @@ int main(int argc, char ** argv)
   vector<double> SP_x_row_2;
   vector<double> SP_x_row_3;
   double p_x, p_y, p_z;
-  p_z = 0.0;
+  p_z = 0.0; // Supposing flat ground, so that height of ZMP is 0
   
-  
+  // initialize clocks 
   auto start = high_resolution_clock::now();
   auto end   = high_resolution_clock::now();
   auto duration = duration_cast<nanoseconds>(end - start);
@@ -277,6 +288,7 @@ int main(int argc, char ** argv)
     // cout << endl << endl << "Sample " << i_sample << endl;
     
     // Update the parameters
+    // Compute cross product matrix for each vertices 
     SP_x_row_12.clear();
     SP_x_row_1.clear();
     SP_x_row_2.clear();
@@ -351,8 +363,9 @@ int main(int argc, char ** argv)
   
   saveResult(data_path);
   
-  
-  // M->writeTask("dump.opf");
+  #ifdef DEBUG
+  M->writeTask("dump_CWC_Lin.opf");
+  #endif // DEBUG
   
   
   
