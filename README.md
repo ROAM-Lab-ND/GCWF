@@ -1,11 +1,12 @@
 # GCWF: Geometric Contact Wrench Feasibility
-[![standard-readme compliant](https://img.shields.io/badge/RA--L-Reviewing-blue.svg?style=flat)](https://www.ieee-ras.org/publications/ra-l)
+[![standard-readme compliant](https://img.shields.io/badge/RA--L-Accepted--2022-blue.svg?style=flat)](https://www.ieee-ras.org/publications/ra-l)
+[![standard-readme compliant](https://img.shields.io/badge/ICRA-2023-orange.svg?style=flat)](https://www.icra2023.org)
 
 <!-- Verifying Contact Wrench Feasibility via Geometrical Approach. -->
 
 Example code of \
 _**A Geometric Sufficient Condition for Contact Wrench Feasibility**_\
-Shenggao Li, Hua Chen, Wei Zhang, Patrick M. Wensing
+Shenggao Li* $^1$, Hua Chen $^2$, Wei Zhang $^2$, Patrick M. Wensing $^1$
 
 ## Background
 
@@ -18,7 +19,7 @@ In our paper, we introduced a geometry-based framework to approximate the exact 
 ## Dependencies and Requirements
 - OS: MacOSX or Linux (x86/x64)
   - Tested on OSX Catalina 10.15 and Ubuntu 18.04
-> TODO: Add support for OSX and Linux with ARM CPU.
+<!-- > TODO: Add support for OSX and Linux with ARM CPU. -->
 - [MOSEK][261d468d] 9.3 - For solving the Second-Order-Cone-Program of exact CWC.
   - Please follow the [installation guide][24aab043] and make sure your license is properly configured as explained in [license guide][833fb562].
   - Our code is developed based on MOSEK 9.3. It should be compatible with newer 10.0 version but has not been tested (due to our license restriction).
@@ -65,7 +66,7 @@ Optimal Supporting Line             | 6.50%  | 4.88%              | 2954.9
 
 ### Troubleshooting
 - MOSEK is not installed: _TODO: set flag in MATLAB script to solve CWC via native MATLAB function ..._
-- For Mac, run the python script in [installation guide][004a721d] is important.
+- For Mac, run the python script in [installation guide][004a721d] is important for MOSEK.
 - If both MOSEK and our project cannot be installed, you can directly run MATLAB script [`Matlab/CompareResult.m`](Matlab/CompareResult.m) and choose an example data set to see the result.
 
   [004a721d]: https://docs.mosek.com/9.3/install/index.html "INSTALLATION-GUIDE"
@@ -77,7 +78,10 @@ Change directory to build `cd build`\
 
 
 ## Citation
-If you use the algorithm in an academic context, please cite the following publication:
 ```
-Paper in reviewing ......
+Paper accepted. Coming soon ......
 ```
+
+### Contact
+$^{1}$ University of Notre Dame, South Bend, IN, US. \{sli25,pwensing\}@nd.edu\
+$^{2}$ Southern University of Science and Technology, Shenzhen, China. \{chenh6,zhangw3\}@sustech.edu.cn
