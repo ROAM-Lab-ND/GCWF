@@ -53,7 +53,7 @@ Run the setup script and follow the instruction to configure the MOSEK library a
 Run the script [`Matlab/SampleAndCompute.m`](Matlab/SampleAndCompute.m) in MATLAB to generate new data, run the solver, and plot the result. You should have results similar to the following:
 ![ErrorHistogram](images/2022/09/errorhistogram.png)
 
-Method                              | Error  | Standard Deviation | Computation Time ($\mu s$)
+Method                              | Error  | Standard Deviation | Computation Time ( $\mu s$ )
 ------------------------------------|--------|--------------------|---------------------------
 $2^{\rm nd}$-CWC                    | 0%     | 0%                 | 556.97
 $1^{\rm st}$-CWC (4 edges)          | 19.35% | 15.02%             | 682.29
