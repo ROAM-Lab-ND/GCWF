@@ -1,5 +1,5 @@
 # GCWF: Geometric Contact Wrench Feasibility
-[![standard-readme compliant](https://img.shields.io/badge/RA--L-Accepted--2022-blue.svg?style=flat)](https://www.ieee-ras.org/publications/ra-l)
+[![standard-readme compliant](https://img.shields.io/badge/RA--L_2022-9931454-blue.svg?style=flat)](https://ieeexplore.ieee.org/document/9931454)
 [![standard-readme compliant](https://img.shields.io/badge/ICRA-2023-orange.svg?style=flat)](https://www.icra2023.org)
 
 <!-- Verifying Contact Wrench Feasibility via Geometrical Approach. -->
@@ -79,7 +79,16 @@ Change directory to build `cd build`\
 
 ## Citation
 ```
-Paper accepted. Coming soon ......
+@ARTICLE{li2022geocwc,  
+  author={Li, Shenggao and Chen, Hua and Zhang, Wei and Wensing, Patrick M.},  
+  journal={IEEE Robotics and Automation Letters},   
+  title={A Geometric Sufficient Condition for Contact Wrench Feasibility},   
+  year={2022},  
+  volume={},  
+  number={},  
+  pages={1-8},  
+  doi={10.1109/LRA.2022.3217687}
+}
 ```
 
 ### Contact
