@@ -79,7 +79,7 @@ Change directory to build `cd build`\
 
 ## Citation
 ```
-@ARTICLE{li2022geocwc,  
+@ARTICLE{li2022gcfw,  
   author={Li, Shenggao and Chen, Hua and Zhang, Wei and Wensing, Patrick M.},  
   journal={IEEE Robotics and Automation Letters},   
   title={A Geometric Sufficient Condition for Contact Wrench Feasibility},   
