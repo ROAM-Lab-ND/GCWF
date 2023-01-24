@@ -1,6 +1,6 @@
 # GCWF: Geometric Contact Wrench Feasibility
 [![standard-readme compliant](https://img.shields.io/badge/RA--L_2022-9931454-blue.svg?style=flat)](https://ieeexplore.ieee.org/document/9931454)
-[![standard-readme compliant](https://img.shields.io/badge/ICRA-2023-orange.svg?style=flat)](https://www.icra2023.org)
+[![standard-readme compliant](https://img.shields.io/badge/IROS-2023-orange.svg?style=flat)](https://ieee-iros.org)
 
 <!-- Verifying Contact Wrench Feasibility via Geometrical Approach. -->
 
@@ -21,8 +21,8 @@ In our paper, we introduced a geometry-based framework to approximate the exact 
   - Tested on OSX Catalina 10.15 and Ubuntu 18.04
 <!-- > TODO: Add support for OSX and Linux with ARM CPU. -->
 - [MOSEK][261d468d] 9.3 - For solving the Second-Order-Cone-Program of exact CWC.
-  - Please follow the [installation guide][24aab043] and make sure your license is properly configured as explained in [license guide][833fb562].
-  - Our code is developed based on MOSEK 9.3. It should be compatible with newer 10.0 version but has not been tested (due to our license restriction).
+  - Please follow the [installation guide][004a721d], compile the [Fusion API][24aab043], and make sure your license is properly configured as explained in [license guide][833fb562].
+  - Our code is developed based on MOSEK 9.3. **It should be compatible with newer 10.0 version** but has not been tested (due to our license restriction).
   - Note: the folder `<MSKHOME>` in which the MOSEK Optimization Suite has been installed would be used in later compiling procedure.
 - [MATLAB][4b980ec4] 2019a or later - For sample data generation and computing statistical result. 
 
