@@ -18,7 +18,7 @@ In our paper, we introduced a geometry-based framework to approximate the exact 
 
 ## Dependencies and Requirements
 - OS: MacOSX or Linux (x86/x64)
-  - Tested on OSX Catalina 10.15 and Ubuntu 18.04
+  - Tested on OSX Catalina 10.15 and Ubuntu 16.04 & 18.04
 <!-- > TODO: Add support for OSX and Linux with ARM CPU. -->
 - [MOSEK][261d468d] 9.3 - For solving the Second-Order-Cone-Program of exact CWC.
   - Please follow the [installation guide][004a721d], compile the [Fusion API][24aab043], and make sure your license is properly configured as explained in [license guide][833fb562].
